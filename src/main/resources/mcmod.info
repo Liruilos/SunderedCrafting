@@ -1,0 +1,16 @@
+[
+{
+  "modid": "sunderedcrafting",
+  "name": "Sundered Crafting",
+  "description": "Crafting Overhaul Mod for the Sundered Server.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Enzer", "Liruilos"],
+  "credits": "The Forge and FML guys, Team Soas",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
