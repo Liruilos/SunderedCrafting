@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "sunderedcrafting:ore_chunk_copper"
+    },
+    "title": {
+      "translate": "achievement.acquireOreChunk.title"
+    },
+    "description": {
+      "translate": "achievement.acquireOreChunk.desc"
+    }
+  },
+  "parent": "sunderedcrafting:sundered_start",
+  "criteria": {
+    "aquire_copper_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "sunderedcrafting:ore_chunk_copper"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": []
+}

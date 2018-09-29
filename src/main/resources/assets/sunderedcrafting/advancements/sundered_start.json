@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:grass"
+    },
+    "title": {
+      "translate": "achievement.sunderedStart.title"
+    },
+    "description": {
+      "translate": "achievement.SunderedStart.desc"
+    }
+  },
+
+  "criteria": {
+    "sundered_start": {
+      "trigger": "minecraft:enter_block",
+      "conditions": {
+        "block": "minecraft:tallgrass"
+      }
+    }
+  },
+  "requirements": []
+}
