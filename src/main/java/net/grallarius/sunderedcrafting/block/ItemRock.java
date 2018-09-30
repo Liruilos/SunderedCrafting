@@ -1,11 +1,13 @@
 package net.grallarius.sunderedcrafting.block;
 
 import net.grallarius.sunderedcrafting.entity.EntityRock;
+import net.grallarius.sunderedcrafting.gui.GuiKnapping;
 import net.grallarius.sunderedcrafting.item.ItemBase;
+import net.grallarius.sunderedcrafting.item.ModItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -24,21 +26,27 @@ public class ItemRock extends ItemBase {
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
 
-        if (!playerIn.capabilities.isCreativeMode)
-        {
-            itemstack.shrink(1);
+        if (playerIn.isSneaking() && itemstack.getCount() > 2 && playerIn.inventory.hasItemStack(new ItemStack(ModItems.plantFibre)) && playerIn.inventory.hasItemStack(new ItemStack(Items.STICK))) {
+            Minecraft.getMinecraft().displayGuiScreen(new GuiKnapping());
+        }
+        if (!playerIn.isSneaking()) {
+
+            if (!playerIn.capabilities.isCreativeMode) {
+                itemstack.shrink(1);
+            }
+
+            worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+
+            if (!worldIn.isRemote) {
+                EntityRock entityRock = new EntityRock(worldIn, playerIn);
+                entityRock.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
+                worldIn.spawnEntity(entityRock);
+            }
+
+            playerIn.addStat(StatList.getObjectUseStats(this));
+
         }
 
-        worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
-
-        if (!worldIn.isRemote)
-        {
-            EntityRock entityRock = new EntityRock(worldIn, playerIn);
-            entityRock.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F, 1.0F);
-            worldIn.spawnEntity(entityRock);
-        }
-
-        playerIn.addStat(StatList.getObjectUseStats(this));
         return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
     }
 }

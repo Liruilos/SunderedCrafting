@@ -13,7 +13,7 @@ public class SunderedCraftingTab extends CreativeTabs{
 
     @Override
     public ItemStack getTabIconItem() {
-        return  new ItemStack(ModItems.ingotCopper);
+        return  new ItemStack(ModItems.oreChunkCopper);
     }
 
 }

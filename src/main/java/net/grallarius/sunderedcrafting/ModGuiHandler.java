@@ -7,10 +7,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class ModGuiHandler implements IGuiHandler {
-/*    public static final int PEDESTAL = 0;
-    public static final int WINDOWBOX = 1;
-    public static final int FLOWERBED = 2;
-    public static final int DENSEFLOWERBED = 3;*/
+    public static final int KNAPPING = 0;
+
 
     @Override
     public Container getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
