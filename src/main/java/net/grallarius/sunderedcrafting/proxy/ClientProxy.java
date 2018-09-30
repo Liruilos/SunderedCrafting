@@ -3,6 +3,7 @@ package net.grallarius.sunderedcrafting.proxy;
 import net.grallarius.sunderedcrafting.InvModel;
 //import net.grallarius.sunderedcrafting.SunderedCrafting;
 //import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.grallarius.sunderedcrafting.entity.ModEntities;
 import net.minecraft.client.resources.I18n;
 //import net.minecraft.item.Item;
 //import net.minecraftforge.client.model.ModelLoader;
@@ -35,6 +36,7 @@ public class ClientProxy extends ServerProxy {
 
     @Override
     public void registerRenderers() {
+        ModEntities.registerRenders();
     }
 
 }

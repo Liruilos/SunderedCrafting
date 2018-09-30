@@ -1,6 +1,7 @@
 package net.grallarius.sunderedcrafting.proxy;
 
 import net.grallarius.sunderedcrafting.block.ModBlocks;
+import net.grallarius.sunderedcrafting.entity.ModEntities;
 import net.grallarius.sunderedcrafting.item.ModItems;
 import net.grallarius.sunderedcrafting.recipe.ModRecipes;
 import net.minecraft.item.Item;
@@ -18,6 +19,8 @@ public class ServerProxy {
 
     public void init(FMLInitializationEvent event) {
         ModRecipes.init();
+        ModEntities.init();
+        ModEntities.register();
     }
 
     public void postInit(FMLPostInitializationEvent event) {

@@ -6,6 +6,6 @@ item.copper_sword.name=Copper Sword
 
 # Achievements
 achievement.sunderedStart.title=Welcome to Soas!
-achievement.SunderedStart.desc=Time to see if we can make anything out of these rocks and branches.
+achievement.sunderedStart.desc=Time to see if we can make anything out of these rocks and branches.
 achievement.acquireOreChunk.title=Babby's First Metal
 achievement.acquireOreChunk.desc=Aquire a Copper Ore Chunk
