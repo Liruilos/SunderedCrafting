@@ -1,0 +1,77 @@
+{
+	"__comment": "Designed by Enzer with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "model_generic_wood_surface",
+		"frame": "model_workbench_frame",
+		"wood_surface": "model_workbench_wood_surface",
+		"drawers_front": "model_workbench_front",
+		"drawer_side": "model_workbench_side",
+		"drawers": "model_workbench_drawers",
+		"forge_front": "model_workbench_forge",
+		"forge_sides": "model_generic_stone_surface",
+		"book": "model_generic_books",
+		"chest": "model_generic_chest",
+		"mallet": "model_workbench_mallet_wood",
+		"chisel": "model_workbench_chisel_copper",
+		"saw": "model_workbench_saw_copper",
+		"knife": "model_workbench_knife_copper",
+		"wrench": "model_workbench_wrench_copper"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "mallet_head",
+			"from": [ 7.5, 21.625, 13.875 ],
+			"to": [ 9.5, 22.625, 14.875 ],
+			"faces": {
+				"down": { "uv": [ 6, 4, 11, 7 ], "texture": "#mallet" },
+				"up": { "uv": [ 6, 0, 11, 3 ], "texture": "#mallet" },
+				"north": { "uv": [ 0, 0, 5, 3 ], "texture": "#mallet" },
+				"south": { "uv": [ 0, 0, 5, 3 ], "texture": "#mallet" },
+				"west": { "uv": [ 6, 8, 9, 11 ], "texture": "#mallet" },
+				"east": { "uv": [ 6, 8, 9, 11 ], "texture": "#mallet" }
+			}
+		},
+		{
+			"__comment": "mallet_handle",
+			"from": [ 8.25, 19.125, 14.125 ],
+			"to": [ 8.75, 21.625, 14.625 ],
+			"faces": {
+				"down": { "uv": [ 2, 10, 3, 11 ], "texture": "#mallet" },
+				"up": { "uv": [ 8, 1, 9, 2 ], "texture": "#mallet" },
+				"north": { "uv": [ 2, 3, 3, 11 ], "texture": "#mallet" },
+				"south": { "uv": [ 2, 3, 3, 11 ], "texture": "#mallet" },
+				"west": { "uv": [ 2, 3, 3, 11 ], "texture": "#mallet" },
+				"east": { "uv": [ 2, 3, 3, 11 ], "texture": "#mallet" }
+			}
+		}
+	],
+	"display": {
+		"thirdperson_righthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 4.8695, 6.6739, 0.6963 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"thirdperson_lefthand": {
+			"rotation":  [ 75, 45, 0 ],
+			"translation":  [ 2.0868, 1.1086, 2.0876 ],
+			"scale":  [ 0.375, 0.375, 0.375 ]
+		},
+		"firstperson_righthand": {
+			"rotation":  [ 0, 45, 0 ],
+			"scale":  [ 0.4, 0.4, 0.4 ]
+		},
+		"firstperson_lefthand": {
+			"rotation":  [ 0, 45, 0 ],
+			"scale":  [ 0.4, 0.4, 0.4 ]
+		},
+		"gui": {
+			"rotation":  [ 30, 225, 0 ],
+			"translation":  [ -2.086, -2.782, 9.7391 ],
+			"scale":  [ 0.625, 0.625, 0.625 ]
+		},
+		"ground": {
+			"translation":  [ 0, 3, 0 ],
+			"scale":  [ 0.25, 0.25, 0.25 ]
+		}
+	}
+}

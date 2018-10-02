@@ -1,10 +1,10 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "sunderedcrafting:firepit_lit"
+    "model": "sunderedcrafting:firepit/firepit_unlit"
   },
   "variants": {
-    "normal":{"model":"sunderedcrafting:firepit_lit"},
+    "normal":{"model":"sunderedcrafting:firepit/firepit_unlit"},
     "facing": {
       "north": { "y": 0 },
       "east":  { "y": 90 },
@@ -12,8 +12,8 @@
       "west":  { "y": 270 }
     },
     "islit": {
-      "true": {"model":"sunderedcrafting:firepit_lit"},
-      "false": {"model":"sunderedcrafting:firepit_lit"}
+      "true": {"model":"sunderedcrafting:firepit/firepit_lit"},
+      "false": {"model":"sunderedcrafting:firepit/firepit_unlit"}
     },
     "inventory": {"transform": "forge:default-block" }
   }
