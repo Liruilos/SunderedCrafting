@@ -6,7 +6,6 @@ public class ItemOreChunk extends ItemBase{
 
     private String oreName;
 
-
     public ItemOreChunk(String name, String oreName) {
         super(name);
 
@@ -16,5 +15,4 @@ public class ItemOreChunk extends ItemBase{
     public void initOreDict() {
         OreDictionary.registerOre(oreName, this);
     }
-
 }

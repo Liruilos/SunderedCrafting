@@ -1,6 +1,0 @@
-{
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "sunderedcrafting:items/ores/material_ore_small_zinc"
-  }
-}
