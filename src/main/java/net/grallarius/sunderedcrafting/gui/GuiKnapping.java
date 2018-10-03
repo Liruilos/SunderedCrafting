@@ -13,9 +13,10 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
 public class GuiKnapping extends GuiScreen {
-    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(SunderedCrafting.MODID, "textures/gui/gui_knapping.png");
+    private static final ResourceLocation BG_TEXTURE = new ResourceLocation(SunderedCrafting.MODID, "textures/gui/gui_stone_knapping.png");
     private GuiButton buttonDone;
     private int guiImageHeight = 209;
+    private int guiImageWidth = 81;
 
     public GuiKnapping(){
 
@@ -51,7 +52,12 @@ public class GuiKnapping extends GuiScreen {
     @Override
     public void drawScreen(int parWidth, int parHeight, float p_73863_3_)
     {
+        GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(BG_TEXTURE);
+        int offsetFromScreenLeft = (width - guiImageWidth ) / 2;
+
+
+        drawTexturedModalRect(offsetFromScreenLeft, 2, 0, 0, guiImageWidth, guiImageHeight);
 
         super.drawScreen(parWidth, parHeight, p_73863_3_);
     }
