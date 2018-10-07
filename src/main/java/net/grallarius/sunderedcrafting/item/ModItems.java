@@ -1,6 +1,7 @@
 package net.grallarius.sunderedcrafting.item;
 
 import net.grallarius.sunderedcrafting.SunderedCrafting;
+import net.grallarius.sunderedcrafting.item.tool.ItemMallet;
 import net.grallarius.sunderedcrafting.item.tool.ItemModSword;
 
 public class ModItems {
@@ -15,6 +16,7 @@ public class ModItems {
     public static ItemOreChunk oreChunkIron = new ItemOreChunk("ore_chunk_iron", "ingotIron");
 
     public static ItemModSword copperSword = new ItemModSword(SunderedCrafting.copperToolMaterial, "copper_sword");
+    public static ItemMallet woodenMallet = new ItemMallet("wooden_mallet");
 
     public static ItemBase plantFibre = new ItemBase("plant_fibre");
 
@@ -31,6 +33,7 @@ public class ModItems {
                 oreChunkIron.register();
 
                 copperSword.register();
+                woodenMallet.register();
 
                 plantFibre.register();
     }

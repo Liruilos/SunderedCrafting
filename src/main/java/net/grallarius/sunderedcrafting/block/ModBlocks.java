@@ -1,6 +1,10 @@
 package net.grallarius.sunderedcrafting.block;
 
 import net.grallarius.sunderedcrafting.block.firepit.BlockFirePit;
+import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchBL;
+import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchBR;
+import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchUL;
+import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchUR;
 import net.minecraft.block.material.Material;
 
 public class ModBlocks {
@@ -13,6 +17,11 @@ public class ModBlocks {
 
     public static BlockFirePit firePit = new BlockFirePit("firepit");
 
+    public static ModWorkbenchBL workbenchBL = new ModWorkbenchBL("mod_workbench");
+    public static ModWorkbenchBR workbenchBR = new ModWorkbenchBR("mod_workbench_invis");
+    public static ModWorkbenchUL workbenchUL = new ModWorkbenchUL("mod_workbench_invis");
+    public static ModWorkbenchUR workbenchUR = new ModWorkbenchUR("mod_workbench_invis");
+
 
     public static void preInit() {
         testBlock.register();
@@ -22,6 +31,8 @@ public class ModBlocks {
         blockRock.register();
 
         firePit.register();
+
+        workbenchBL.register();
     }
 
 

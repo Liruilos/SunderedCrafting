@@ -1,0 +1,22 @@
+{
+	"__comment": "Designed by Liruilos with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "#texture",
+		"texture": "#texture"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 3, 0, 5 ],
+			"to": [ 13, 4, 11 ],
+			"faces": {
+				"down": { "uv": [ 3, 5, 13, 11 ], "texture": "#texture" },
+				"up": { "uv": [ 3, 5, 13, 11 ], "texture": "#texture" },
+				"north": { "uv": [ 3, 12, 13, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 3, 12, 13, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 5, 12, 11, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 5, 12, 11, 16 ], "texture": "#texture" }
+			}
+		}
+	]
+}
