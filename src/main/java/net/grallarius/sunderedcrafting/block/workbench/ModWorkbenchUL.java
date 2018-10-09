@@ -19,9 +19,9 @@ import static net.grallarius.sunderedcrafting.SunderedCrafting.BLOCK_REGISTRY;
 public class ModWorkbenchUL extends ModWorkbenchBL {
 
     protected static final AxisAlignedBB BOX_NORTH_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.0D, 1.0D, 0.8D, 0.3D);
-    protected static final AxisAlignedBB BOX_SOUTH_AABB = new AxisAlignedBB(0.8D, 0.0D, 0.7D, 1.0D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB BOX_WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.2D, 0.3D, 1.0D, 1.0D);
-    protected static final AxisAlignedBB BOX_EAST_AABB = new AxisAlignedBB(0.7D, 0.0D, 0.8D, 1.0D, 1.0D, 1.0D);
+    protected static final AxisAlignedBB BOX_SOUTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.7D, 0.8D, 0.8D, 1.0D);
+    protected static final AxisAlignedBB BOX_WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.2D, 0.3D, 0.8D, 1.0D);
+    protected static final AxisAlignedBB BOX_EAST_AABB = new AxisAlignedBB(0.7D, 0.0D, 0.0D, 1.0D, 0.8D, 0.8D);
 
     public ModWorkbenchUL(String name){
         super(name);
