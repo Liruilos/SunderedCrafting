@@ -9,7 +9,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 import static net.grallarius.sunderedcrafting.SunderedCrafting.BLOCK_REGISTRY;
 
@@ -31,27 +31,27 @@ public class ModWorkbenchBR extends ModWorkbenchBL {
         register(new ItemBlock(this).setRegistryName(getRegistryName()));
     }
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.INVISIBLE;
-    }
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[]{FACING});
     }
 
+
     @Override
-    public IBlockState getActualState(final IBlockState state, final IBlockAccess world, final BlockPos pos) {
-        // derive facing from block to left TODO make this less shit
-        if (world.getBlockState(pos.north()) == ModBlocks.workbenchBL) {
-            return state.withProperty(FACING, world.getBlockState(pos.down()).getValue(FACING));
-        } if (world.getBlockState(pos.east()) == ModBlocks.workbenchBL) {
-            return state.withProperty(FACING, world.getBlockState(pos.down()).getValue(FACING));
-        } if (world.getBlockState(pos.south()) == ModBlocks.workbenchBL) {
-            return state.withProperty(FACING, world.getBlockState(pos.down()).getValue(FACING));
-        } if (world.getBlockState(pos.west()) == ModBlocks.workbenchBL) {
-            return state.withProperty(FACING, world.getBlockState(pos.down()).getValue(FACING));
-        } else {
-            return state;
-        }
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.INVISIBLE;
     }
+
+    @Override
+    public void breakBlock(final World world, final BlockPos pos, final IBlockState state) {
+
+        BlockPos posLeft = pos.offset(state.getValue(FACING).rotateYCCW());
+
+        if (world.getBlockState(posLeft).getBlock() == ModBlocks.workbenchBL) {
+            world.destroyBlock(posLeft, true);
+        }
+        world.setBlockToAir(pos);
+    }
+
+
+
 }

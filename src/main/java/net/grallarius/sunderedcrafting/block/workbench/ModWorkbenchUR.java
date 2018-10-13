@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -15,6 +16,12 @@ import net.minecraft.world.World;
 import static net.grallarius.sunderedcrafting.SunderedCrafting.BLOCK_REGISTRY;
 
 public class ModWorkbenchUR extends ModWorkbenchBL {
+
+    protected static final AxisAlignedBB BOX_NORTH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.8D, 0.8D, 0.3D);
+    protected static final AxisAlignedBB BOX_SOUTH_AABB = new AxisAlignedBB(0.2D, 0.0D, 0.7D, 1.0D, 0.8D, 1.0D);
+    protected static final AxisAlignedBB BOX_WEST_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.2D, 0.3D, 0.8D, 1.0D);
+    protected static final AxisAlignedBB BOX_EAST_AABB = new AxisAlignedBB(0.7D, 0.0D, 0.0D, 1.0D, 0.8D, 0.8D);
+
 
     public ModWorkbenchUR(String name){
         super(name);
@@ -32,28 +39,43 @@ public class ModWorkbenchUR extends ModWorkbenchBL {
         register(new ItemBlock(this).setRegistryName(getRegistryName()));
     }
 
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state) {
-        return EnumBlockRenderType.INVISIBLE;
-    }
     protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[]{FACING});
     }
 
+
     @Override
-    public IBlockState getActualState(final IBlockState state, final IBlockAccess world, final BlockPos pos) {
-        // derive facing from block below
-        if (world.getBlockState(pos.down()) == ModBlocks.workbenchBR) {
-            return state.withProperty(FACING, world.getBlockState(pos.down()).getValue(FACING));
-        } else {
-            return state;
-        }
+    public EnumBlockRenderType getRenderType(IBlockState state) {
+        return EnumBlockRenderType.INVISIBLE;
     }
 
     @Override
-    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-        if (world.getBlockState(pos.down()).getBlock() != ModBlocks.workbenchBR) {
-            ((World) world).setBlockToAir(pos);
+    public void breakBlock(final World world, final BlockPos pos, final IBlockState state) {
+
+        BlockPos posLeft = pos.offset(state.getValue(FACING).rotateYCCW());
+
+        if (world.getBlockState(posLeft.down()).getBlock() == ModBlocks.workbenchBL) {
+            world.destroyBlock(posLeft.down(), true);
+        }
+        world.setBlockToAir(pos);
+    }
+
+
+    @Override
+    @Deprecated
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        switch (state.getValue(FACING))
+        {
+            case NORTH:
+                return BOX_NORTH_AABB;
+            case SOUTH:
+                return BOX_SOUTH_AABB;
+            case WEST:
+                return BOX_WEST_AABB;
+            case EAST:
+            default:
+                return BOX_EAST_AABB;
         }
     }
 }

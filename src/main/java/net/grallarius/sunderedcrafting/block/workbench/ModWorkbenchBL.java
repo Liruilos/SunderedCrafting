@@ -59,6 +59,14 @@ public class ModWorkbenchBL extends BlockTileEntity<TileEntityWorkbench> {
     }
 
     @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        //System.out.println("i am getting called in BL");
+
+        return super.removedByPlayer(state, world, pos, player, willHarvest);
+    }
+
+    @Override
     public void breakBlock(final World world, final BlockPos pos, final IBlockState state) {
 /*        TileEntity workbench = world.getTileEntity(pos);
         IItemHandler itemHandler = workbench.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
@@ -71,20 +79,19 @@ public class ModWorkbenchBL extends BlockTileEntity<TileEntityWorkbench> {
         }*/
 
         if (world.getBlockState(pos.up()).getBlock() == ModBlocks.workbenchUL) {
-            world.setBlockToAir(pos.up());
+            world.destroyBlock(pos.up(), false);
         }
-        //TODO make sure it removes the other blocks on right side
+        BlockPos posRight = pos.offset(state.getValue(FACING).rotateY());
+        if (world.getBlockState(posRight).getBlock() == ModBlocks.workbenchBR) {
+            world.destroyBlock(posRight, false);
+        }
+        if (world.getBlockState(posRight.up()).getBlock() == ModBlocks.workbenchUR) {
+            world.destroyBlock(posRight.up(), false);
+        }
 
         super.breakBlock(world, pos, state);
+        world.setBlockToAir(pos);
     }
-
-    /*    @Override
-    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor) {
-        System.out.println("BL's neighbour has changed! Up is: " + world.getBlockState(pos.up()).getBlock());
-        if (world.getBlockState(pos.up()).getBlock() != ModBlocks.workbenchUL) {
-            ((World) world).setBlockToAir(pos);
-        }
-    }*/
 
 
     @Override
