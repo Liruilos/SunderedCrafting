@@ -19,6 +19,9 @@ public class ModItems {
     public static ItemMallet woodenMallet = new ItemMallet("wooden_mallet");
 
     public static ItemBase plantFibre = new ItemBase("plant_fibre");
+    public static ItemModLeather rawHide = new ItemModLeather("raw_hide");
+    public static ItemModLeather treatedLeather = new ItemModLeather("treated_leather");
+    public static ItemModLeather curedLeather = new ItemModLeather("cured_leather");
 
 
 
@@ -36,6 +39,9 @@ public class ModItems {
                 woodenMallet.register();
 
                 plantFibre.register();
+                rawHide.register();
+                treatedLeather.register();
+                curedLeather.register();
     }
 
 

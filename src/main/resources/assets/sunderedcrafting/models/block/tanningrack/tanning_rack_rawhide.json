@@ -1,10 +1,10 @@
 {
 	"__comment": "Model generated using MrCrayfish's Model Creator (http://mrcrayfish.com/modelcreator/)",
 	"textures": {
-		"particle": "model_tanningrack_front",
-		"tanning_rack": "model_tanningrack_front",
-		"leather": "model_tanningrack_rawhide",
-		"rope": "model_generic_rope"
+		"particle": "sunderedcrafting:blocks/model_tanningrack_front",
+		"tanning_rack": "sunderedcrafting:blocks/model_tanningrack_front",
+		"leather": "sunderedcrafting:blocks/model_tanningrack_rawhide",
+		"rope": "sunderedcrafting:blocks/model_generic_rope"
 	},
 	"elements": [ 	 
 		{

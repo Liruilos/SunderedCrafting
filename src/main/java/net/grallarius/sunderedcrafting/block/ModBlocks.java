@@ -1,6 +1,7 @@
 package net.grallarius.sunderedcrafting.block;
 
 import net.grallarius.sunderedcrafting.block.firepit.BlockFirePit;
+import net.grallarius.sunderedcrafting.block.tanningrack.BlockTanningRack;
 import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchBL;
 import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchBR;
 import net.grallarius.sunderedcrafting.block.workbench.ModWorkbenchUL;
@@ -16,6 +17,7 @@ public class ModBlocks {
     public static BlockRock blockRock = new BlockRock("block_rock");
 
     public static BlockFirePit firePit = new BlockFirePit("firepit");
+    public static BlockTanningRack tanningRack = new BlockTanningRack("tanning_rack");
 
     public static ModWorkbenchBL workbenchBL = new ModWorkbenchBL("mod_workbench");
     public static ModWorkbenchBR workbenchBR = new ModWorkbenchBR("mod_workbench_invis");
@@ -31,6 +33,7 @@ public class ModBlocks {
         blockRock.register();
 
         firePit.register();
+        tanningRack.register();
 
         workbenchBL.register();
     }

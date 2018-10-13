@@ -2,7 +2,9 @@ package net.grallarius.sunderedcrafting;
 
 import net.grallarius.sunderedcrafting.client.SunderedCraftingTab;
 import net.grallarius.sunderedcrafting.network.PacketRequestUpdateFirepit;
+import net.grallarius.sunderedcrafting.network.PacketRequestUpdateTanningRack;
 import net.grallarius.sunderedcrafting.network.PacketUpdateFirepit;
+import net.grallarius.sunderedcrafting.network.PacketUpdateTanningRack;
 import net.grallarius.sunderedcrafting.proxy.ServerProxy;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -48,6 +50,8 @@ public class SunderedCrafting
     public void preInit(FMLPreInitializationEvent event) {
         wrapper.registerMessage(new PacketUpdateFirepit.Handler(), PacketUpdateFirepit.class, packetId++, Side.CLIENT);
         wrapper.registerMessage(new PacketRequestUpdateFirepit.Handler(), PacketRequestUpdateFirepit.class, packetId++, Side.SERVER);
+        wrapper.registerMessage(new PacketUpdateTanningRack.Handler(), PacketUpdateTanningRack.class, packetId++, Side.CLIENT);
+        wrapper.registerMessage(new PacketRequestUpdateTanningRack.Handler(), PacketRequestUpdateTanningRack.class, packetId++, Side.SERVER);
 
         proxy.preInit(event);
     }
