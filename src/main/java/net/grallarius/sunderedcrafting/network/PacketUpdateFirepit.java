@@ -13,14 +13,16 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class PacketUpdateFirepit implements IMessage {
     private BlockPos pos;
     private ItemStack stack;
+    private ItemStack stack2;
 
-    public PacketUpdateFirepit(BlockPos pos, ItemStack stack) {
+    public PacketUpdateFirepit(BlockPos pos, ItemStack stack, ItemStack stack2) {
         this.pos = pos;
         this.stack = stack;
+        this.stack2 = stack2;
     }
 
     public PacketUpdateFirepit(TileEntityFirepit te) {
-        this(te.getPos(), te.inventory.getStackInSlot(0));
+        this(te.getPos(), te.inventory.getStackInSlot(0), te.inventory.getStackInSlot(1));
     }
 
     public PacketUpdateFirepit() {
@@ -30,12 +32,14 @@ public class PacketUpdateFirepit implements IMessage {
     public void toBytes(ByteBuf buf) {
         buf.writeLong(pos.toLong());
         ByteBufUtils.writeItemStack(buf, stack);
+        ByteBufUtils.writeItemStack(buf, stack2);
     }
 
     @Override
     public void fromBytes(ByteBuf buf) {
         pos = BlockPos.fromLong(buf.readLong());
         stack = ByteBufUtils.readItemStack(buf);
+        stack2 = ByteBufUtils.readItemStack(buf);
     }
 
     public static class Handler implements IMessageHandler<PacketUpdateFirepit, IMessage> {
@@ -45,6 +49,7 @@ public class PacketUpdateFirepit implements IMessage {
             Minecraft.getMinecraft().addScheduledTask(() -> {
                 TileEntityFirepit te = (TileEntityFirepit)Minecraft.getMinecraft().world.getTileEntity(message.pos);
                 te.inventory.setStackInSlot(0, message.stack);
+                te.inventory.setStackInSlot(1, message.stack2);
             });
             return null;
         }
