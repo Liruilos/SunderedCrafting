@@ -1,6 +1,7 @@
 package net.grallarius.sunderedcrafting.item;
 
 import net.grallarius.sunderedcrafting.SunderedCrafting;
+import net.grallarius.sunderedcrafting.item.tool.ItemKnife;
 import net.grallarius.sunderedcrafting.item.tool.ItemMallet;
 import net.grallarius.sunderedcrafting.item.tool.ItemModSword;
 
@@ -17,8 +18,11 @@ public class ModItems {
 
     public static ItemModSword copperSword = new ItemModSword(SunderedCrafting.copperToolMaterial, "copper_sword");
     public static ItemMallet woodenMallet = new ItemMallet("wooden_mallet");
+    public static ItemKnife woodenKnife = new ItemKnife("wooden_knife");
 
     public static ItemBase plantFibre = new ItemBase("plant_fibre");
+    public static ItemBase tallow = new ItemBase("tallow");
+
     public static ItemModLeather rawHide = new ItemModLeather("raw_hide");
     public static ItemModLeather treatedLeather = new ItemModLeather("treated_leather");
     public static ItemModLeather curedLeather = new ItemModLeather("cured_leather");
@@ -37,8 +41,10 @@ public class ModItems {
 
                 copperSword.register();
                 woodenMallet.register();
+                woodenKnife.register();
 
                 plantFibre.register();
+                tallow.register();
                 rawHide.register();
                 treatedLeather.register();
                 curedLeather.register();

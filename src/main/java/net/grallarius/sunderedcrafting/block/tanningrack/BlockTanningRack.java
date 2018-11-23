@@ -11,8 +11,10 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -50,11 +52,14 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> {
         if (!world.isRemote) {
             TileEntityTanningRack te = getTileEntity(world, pos);
             IItemHandler itemHandler = te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, side);
-
-            //TODO right click with knife while raw hide is on rack makes treated leather
-            // TODO right click with tallow while treated is on rack makes cured leather
+            ItemStack raw = new ItemStack(ModItems.rawHide);
+            ItemStack treated = new ItemStack(ModItems.treatedLeather);
+            ItemStack cured = new ItemStack(ModItems.curedLeather);
+            ItemStack knife = new ItemStack(ModItems.woodenKnife);
+            ItemStack tallow = new ItemStack(ModItems.tallow);
 
             if (!player.isSneaking() && itemHandler != null) {
+
                 if (player.getHeldItem(hand).isEmpty()) {
                     /**remove items from relevant slot*/
                     if(!itemHandler.getStackInSlot(0).isEmpty()){
@@ -62,9 +67,16 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> {
                         player.inventory.placeItemBackInInventory(world, itemHandler.extractItem(0, amount,false));
                     }
 
-                } else if(isValidForSlot(player.getHeldItem(hand)) && itemHandler.getStackInSlot(0).getCount() < 64) {
+                } else if(isValidForSlot(player.getHeldItem(hand)) && itemHandler.getStackInSlot(0).isEmpty()) {
                     /**insert items from hand*/
-                    if (itemHandler.getStackInSlot(0).isEmpty()){
+                    ItemStack singleItemFromHand = player.getHeldItem(hand).splitStack(1);
+                    int remainder = player.getHeldItem(hand).getCount();
+                    ItemStack remainingItems = player.getHeldItem(hand).splitStack(remainder);
+                    player.setHeldItem(hand, itemHandler.insertItem(0, singleItemFromHand, false));
+                    player.setHeldItem(hand, remainingItems);
+
+                    //alt version for stack limit > 1
+/*                    if (itemHandler.getStackInSlot(0).isEmpty()){
                         itemHandler.insertItem(0, player.getHeldItem(hand), false);
                         player.setHeldItem(hand, ItemStack.EMPTY);
                     }
@@ -72,11 +84,30 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> {
                         int spaceRemaining = 64 - itemHandler.getStackInSlot(0).getCount();
                         ItemStack insertableItems = player.getHeldItem(hand).splitStack(spaceRemaining);
                         itemHandler.insertItem(0, insertableItems, false);
-                    }
+                    }*/
                     state.withProperty(TYPE, getType(state, world, pos));
-                    System.out.println("setting my state to " + getType(state, world, pos));
+                    //System.out.println("setting my state to " + getType(state, world, pos));
                     te.markDirty();
-                } else {return false;}
+                } else if (itemHandler.getStackInSlot(0).isItemEqual(raw) && player.getHeldItem(hand).isItemEqual(knife)){
+
+                    //right click with knife while raw hide is on rack makes treated leather
+                    itemHandler.extractItem(0, 1,false);
+                    itemHandler.insertItem(0, treated, false);
+                    state.withProperty(TYPE, getType(state, world, pos));
+                    te.markDirty();
+
+                } else if (itemHandler.getStackInSlot(0).isItemEqual(treated) && player.getHeldItem(hand).isItemEqual(tallow)){
+
+                    //right click with tallow while treated is on rack makes cured leather
+                    itemHandler.extractItem(0, 1,false);
+                    itemHandler.insertItem(0, cured, false);
+                    player.getHeldItem(hand).splitStack(1);
+                    state.withProperty(TYPE, getType(state, world, pos));
+                    te.markDirty();
+
+                }
+
+                else {return false;}
                 te.markDirty();
             }
         }
@@ -97,15 +128,14 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> {
 
     @Override
     public void breakBlock(final World world, final BlockPos pos, final IBlockState state) {
-/*        TileEntity workbench = world.getTileEntity(pos);
-        IItemHandler itemHandler = workbench.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
 
-        for (int i = 0; i < 2; i++) {
-            if(!itemHandler.getStackInSlot(i).isEmpty()){
-                EntityItem droppedItem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), itemHandler.getStackInSlot(i));
-                world.spawnEntity(droppedItem);
-            }
-        }*/
+        //TODO drop stuff
+        TileEntity tanningrack = world.getTileEntity(pos);
+        IItemHandler itemHandler = tanningrack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, EnumFacing.NORTH);
+        if(!itemHandler.getStackInSlot(0).isEmpty()){
+            EntityItem droppedItem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), itemHandler.getStackInSlot(0));
+            world.spawnEntity(droppedItem);
+        }
 
         super.breakBlock(world, pos, state);
     }
@@ -142,7 +172,6 @@ public class BlockTanningRack extends BlockTileEntity<TileEntityTanningRack> {
 
 
         if (itemHandler != null){
-            System.out.println("what have i got? " + itemHandler.getStackInSlot(0));
 
             ItemStack rawhide = new ItemStack(ModItems.rawHide);
             ItemStack treated = new ItemStack(ModItems.treatedLeather);
